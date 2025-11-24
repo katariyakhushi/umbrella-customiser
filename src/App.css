@@ -1,0 +1,436 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #3B82F6;
+    --primary-light: #60A5FA;
+    --primary-dark: #2563EB;
+    --background: #EFF6FF;
+    --text-primary: #1F2937;
+    --text-secondary: #6B7280;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--background);
+    color: var(--text-primary);
+    transition: background-color 0.4s ease;
+    overflow-x: hidden;
+}
+
+
+.container {
+    display: flex;
+    min-height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.preview-section {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    position: relative;
+}
+
+.umbrella-container {
+    position: relative;
+    max-width: 500px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.umbrella-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: all 0.4s ease;
+    filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.15));
+    animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+.logo-preview {
+    position: absolute;
+    bottom: 18%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 22%;
+    height: auto;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+.logo-preview.active {
+    display: flex;
+}
+
+.uploaded-logo {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.2));
+    animation: fadeInLogo 0.4s ease;
+}
+
+@keyframes fadeInLogo {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+.logo-indicator {
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.logo-indicator.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.indicator-line {
+    width: 120px;
+    height: 2px;
+    background-color: var(--text-primary);
+    margin-bottom: 8px;
+    position: relative;
+}
+
+.indicator-line::before,
+.indicator-line::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: var(--text-primary);
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.indicator-line::before {
+    left: -4px;
+}
+
+.indicator-line::after {
+    right: -4px;
+}
+
+.indicator-text {
+    font-size: 14px;
+    color: var(--text-primary);
+    white-space: nowrap;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 4px 12px;
+    border-radius: 4px;
+}
+
+
+.customization-section {
+    flex: 1;
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 600px;
+}
+
+.title {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+}
+
+
+.color-swatches {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 40px;
+}
+
+.color-swatch {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    position: relative;
+}
+
+.color-swatch:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.color-swatch.active {
+    border-color: var(--text-primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.color-swatch.active::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 16px;
+    height: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+.customization-info {
+    margin-bottom: 30px;
+}
+
+.subtitle {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.description {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.file-requirements {
+    font-size: 14px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+
+.upload-section {
+    margin-bottom: 20px;
+}
+
+.upload-btn {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 18px 32px;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.upload-btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.upload-btn:active {
+    transform: translateY(0);
+}
+
+.upload-btn:disabled {
+    background-color: var(--text-secondary);
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.upload-btn:disabled:hover {
+    transform: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.upload-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.error-message {
+    color: #EF4444;
+    font-size: 14px;
+    padding: 12px;
+    background-color: #FEE2E2;
+    border-radius: 6px;
+    display: none;
+    margin-bottom: 20px;
+    border-left: 4px solid #EF4444;
+}
+
+.error-message.show {
+    display: block;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+.logo-controls {
+    display: none;
+    gap: 12px;
+}
+
+.logo-controls.show {
+    display: flex;
+}
+
+.secondary-btn {
+    padding: 12px 24px;
+    background-color: transparent;
+    color: var(--text-primary);
+    border: 2px solid var(--text-secondary);
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.secondary-btn:hover {
+    border-color: var(--text-primary);
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+body.theme-blue {
+    --primary-color: #3B82F6;
+    --primary-light: #60A5FA;
+    --primary-dark: #2563EB;
+    --background: #EFF6FF;
+}
+
+body.theme-pink {
+    --primary-color: #EC4899;
+    --primary-light: #F472B6;
+    --primary-dark: #DB2777;
+    --background: #FCE7F3;
+}
+
+body.theme-yellow {
+    --primary-color: #F59E0B;
+    --primary-light: #FBBF24;
+    --primary-dark: #D97706;
+    --background: #FEF3C7;
+}
+
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .preview-section {
+        padding: 40px 20px 20px;
+    }
+
+    .customization-section {
+        padding: 20px 40px 40px;
+        max-width: 100%;
+    }
+
+    .title {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 768px) {
+    .customization-section {
+        padding: 20px;
+    }
+
+    .title {
+        font-size: 32px;
+    }
+
+    .subtitle {
+        font-size: 20px;
+    }
+
+    .color-swatches {
+        gap: 12px;
+    }
+
+    .color-swatch {
+        width: 40px;
+        height: 40px;
+    }
+
+    .upload-btn {
+        padding: 16px 24px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .preview-section {
+        padding: 20px;
+    }
+
+    .title {
+        font-size: 28px;
+    }
+
+    .indicator-text {
+        font-size: 12px;
+    }
+}
+
